@@ -4,7 +4,8 @@ from .models import Post
 # Create your views here.
 
 def home(request):
-    return render(request, 'posts/index.html')
+    posts = Post.objects.order_by('-date_posted')[:3]
+    return render(request, 'posts/index.html', {'posts': posts})
 
 def posts(request):
     posts = Post.objects.all().order_by('-date_posted')
