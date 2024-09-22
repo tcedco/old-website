@@ -1,19 +1,21 @@
 {% extends 'base.html' %}
 
-{% load markdown_extras %}
+{% load static %}
 
-{% block title %}Codects: {{ post.title }}{% endblock %}
+{% block title %}{{ post.title }}{% endblock %}
 
 {% block content %}
 
 <div class="container">
-    <h1>{{ post.title }}</h1>
-    <p><small>Posted on {{ post.date_posted|date:"F j, Y, g:i a" }}</small></p>
-    <hr>
-    <div class="post-content">
-        {{ post.content|linebreaks }}
+    <div class="post">
+        <h1>{{ post.title }}</h1>
+        <p><small>Posted on {{ post.date_posted|date:"F j, Y, g:i a" }}</small></p>
+        <hr>
+        <div class="post-content">
+            {{ post.content|safe }}
+        </div>
+        <a href="{% url 'posts' %}" class="btn btn-primary mt-4">Back to Posts</a>
     </div>
-    <a href="{% url 'posts' %}" class="btn btn-primary mt-4">Back to Posts</a>
 </div>
 
 {% endblock %}

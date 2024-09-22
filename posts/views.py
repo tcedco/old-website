@@ -16,7 +16,11 @@ def posts(request):
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
-    post.content = mark_safe(md.markdown(post.content))
+    post.content = mark_safe(md.markdown(
+        post.content,
+        extensions=['fenced_code', 'codehilite']
+    ))
+    
     return render(request, 'posts/post_detail.html', {'post': post})
 
 def about(request):
