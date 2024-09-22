@@ -1,5 +1,8 @@
 from django.shortcuts import render, get_object_or_404
+from django.utils.html import mark_safe
 from .models import Post
+
+import markdown as md
 
 # Create your views here.
 
@@ -13,6 +16,7 @@ def posts(request):
 
 def post_detail(request, slug):
     post = get_object_or_404(Post, slug=slug)
+    post.content = mark_safe(md.markdown(post.content))
     return render(request, 'posts/post_detail.html', {'post': post})
 
 def about(request):
