@@ -16,9 +16,11 @@
 
 <!-- Display last five posts -->
 
+<h2 class="mt-5">Latest Posts</h2>
 {% for post in posts %}
     <div class="post">
         <h2><a href="{% url 'post-detail' post.slug %}">{{ post.title }}</a></h2>
+        <p>Posted on {{ post.date_posted|date:"F d, Y" }} by {{ post.author }}</p>
         <p>{{ post.content|truncatewords:50 }}</p>
         <a href="{% url 'post-detail' post.slug %}">Read more</a>
         <hr>

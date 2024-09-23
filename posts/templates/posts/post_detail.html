@@ -9,7 +9,7 @@
 <div class="container">
     <div class="post">
         <h1>{{ post.title }}</h1>
-        <p><small>Posted on {{ post.date_posted|date:"F j, Y, g:i a" }}</small></p>
+        <p><small>Posted on {{ post.date_posted|date:"F j, Y, g:i a" }} by {{ post.author }}</small></p>
         <hr>
         <div class="post-content">
             {{ post.content|safe }}
